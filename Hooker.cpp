@@ -580,7 +580,7 @@ static void SubstrateHookFunctionARM(SubstrateProcessRef process, void *symbol, 
     size_t length(used);
     for (unsigned offset(0); offset != used / sizeof(uint32_t); ++offset)
         if (A$pcrel$r(backup[offset])) {
-            if ((backup[offset] & 0x02000000) == 0 || (backup[offset] & 0x0000f000 >> 12) != (backup[offset] & 0x0000000f))
+            if ((backup[offset] & 0x02000000) == 0 || ((backup[offset] & 0x0000f000) >> 12) != (backup[offset] & 0x0000000f))
                 length += 2 * sizeof(uint32_t);
             else
                 length += 4 * sizeof(uint32_t);
